@@ -1,5 +1,6 @@
 package com.gisemba.demo;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,10 @@ public class StudentService {
             throw new IllegalStateException("Student with id:" + studentId + "Does not exist");
         }
         studentRepository.deleteById(studentId);
+    }
+
+    @Transactional
+    public void updateStudent(Long studentId) {
+        studentRepository.findById(studentId);
     }
 }
